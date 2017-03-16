@@ -1,7 +1,7 @@
 import React from 'react'
 import Actions from '../../actions'
-import css from 'style.scss'
-import DropDown from './DropDown'
+import css from './style.scss'
+import {DropDown} from '../DropDown'
 
 export default class WorkerDetails extends React.Component {
   constructor (props) {
@@ -9,14 +9,13 @@ export default class WorkerDetails extends React.Component {
     this.state = {
       name: '',
       title: '',
-      position: '',
-
+      position: ''
     }
   }
 
-  const TITLES = ['Full Stack Developet', 'DBA', 'Front End Developer',]
+  TITLES = ['Full Stack Developet', 'DBA', 'Front End Developer']
 
-  const POSITIONS = ['Team Leader', 'Junior Developer', 'Feature Master']
+  POSITIONS = ['Team Leader', 'Junior Developer', 'Feature Master']
 
   nameChange (event) {
     this.setState({ name : event.target.value})
@@ -42,13 +41,13 @@ export default class WorkerDetails extends React.Component {
         <div>
           <span> Title: </span>
           <span>
-            <DropDown items={this.TITLES} selected={0} returnValue={titleChange} />
+            <DropDown items={this.TITLES} selected={0} returnValue={this.titleChange} />
           </span>
         </div>
         <div>
           <span> Position: </span>
           <span>
-            <DropDown items={this.POSITIONS} selected={0} returnValue={positionChange} />
+            <DropDown items={this.POSITIONS} selected={0} returnValue={this.positionChange} />
           </span>
         </div>
       </div>

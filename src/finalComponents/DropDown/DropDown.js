@@ -28,19 +28,6 @@ export default class DropDown extends React.Component {
     if (typeof event.target.className === 'string' && event.target.className.indexOf('dropdown') === -1 && this.state.listStatus) this.setState({listStatus: false})
   }
 
-  // manualSelection = (event) => {
-  //   if (this.state.listStatus) {
-  //     if (event.keyCode === 40 || event.keyCode === 38) {
-  //       let activeListItem = document.getElementsByClassName('dropdownItem')
-  //       console.log(activeListItem[1])
-  //       activeListItem[0].focus()
-  //     }
-  //     // arrow down keyCode = 40
-  //     // arrow up keyCode = 38
-  //     // enter keyCode = 13
-  //   }
-  // }
-
   toggleDropDown = () => {
     this.setState({listStatus: !this.state.listStatus})
   }

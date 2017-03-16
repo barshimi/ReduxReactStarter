@@ -1,1 +1,1 @@
-export WorkerDetails  from './WorkerDetails'
+export WorkerDetails from './WorkerDetails'
