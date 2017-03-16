@@ -3,7 +3,7 @@ import TaboolaLogoSvg from './TaboolaLogoSvg'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import actionCreator from '../../actions'
-// import WorkersList from '../WorkersList'
+import {WorkersList} from '../WorkersList'
 import css from './app.scss'
 
 export class App extends Component {
@@ -13,10 +13,10 @@ export class App extends Component {
   }
   render () {
     const {workersList} = this.props
-    console.log(workersList)
     return (
-      <div className={css['main-container']}>
+      <div className={`clearfix ${css['main-container']}`}>
         <div className={css['taboola-logo']}><TaboolaLogoSvg width={250} /></div>
+        <WorkersList list={workersList} />
       </div>
     )
   }
