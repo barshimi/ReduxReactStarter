@@ -15,7 +15,7 @@ export class App extends Component {
     const {workersList, actions} = this.props
     return (
       <div>
-        <div className={css['main-container']}>
+        <div className={`clearfix ${css['main-container']}`}>
           <div className={css['taboola-logo']}><TaboolaLogoSvg width={250} /></div>
             <WorkersList list={workersList} actions={actions} />
             <WorkerDetails />

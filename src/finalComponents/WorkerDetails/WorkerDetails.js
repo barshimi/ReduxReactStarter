@@ -13,9 +13,17 @@ export default class WorkerDetails extends React.Component {
     }
   }
 
-  TITLES = ['Full Stack Developet', 'DBA', 'Front End Developer']
+  TITLES = [
+      {'layer_id': 1, 'layer_display_name': 'Full Stack Developet'},
+      {'layer_id': 2, 'layer_display_name': 'DBA'},
+      {'layer_id': 3, 'layer_display_name': 'Front End Developer'}
+    ]
 
-  POSITIONS = ['Team Leader', 'Junior Developer', 'Feature Master']
+  POSITIONS = [
+    {'layer_id': 1, 'layer_display_name': 'Team Leader'},
+    {'layer_id': 2, 'layer_display_name': 'Junior Developer'},
+    {'layer_id': 3, 'layer_display_name': 'Feature Master'}
+  ]
 
   nameChange (event) {
     this.setState({ name : event.target.value})
@@ -32,22 +40,22 @@ export default class WorkerDetails extends React.Component {
   render () {
     return (
       <div className={css['worker-details-container']}>
-        <div>
-          <span> Name: </span>
+        <div className={css['sub-input']}>
+          <span className={css['titles']}> Name: </span>
           <span>
             <input id='workerName' onChange={this.nameChange}></input>
           </span>
         </div>
-        <div >
-          <span> Title: </span>
+        <div className={css['sub-input']}>
+          <span className={css['titles']}> Title: </span>
           <span>
-            <DropDown items={this.TITLES} selected={0} returnValue={this.titleChange} />
+            <DropDown  style={css} items={this.TITLES} returnValue={this.titleChange} />
           </span>
         </div>
-        <div>
-          <span> Position: </span>
+        <div className={css['sub-input']}>
+          <span className={css['titles']}> Position: </span>
           <span>
-            <DropDown items={this.POSITIONS} selected={0} returnValue={this.positionChange} />
+            <DropDown style={css} items={this.POSITIONS} returnValue={this.positionChange} />
           </span>
         </div>
       </div>
