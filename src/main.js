@@ -9,7 +9,7 @@ import createLogger from 'redux-logger'
 import Root from './routes'
 import rootReducer from './reducers'
 require('./style/_globals.scss')
-console.log(rootReducer)
+
 const history = createBrowserHistory()
 const logger = createLogger()
 const store = createStore(
