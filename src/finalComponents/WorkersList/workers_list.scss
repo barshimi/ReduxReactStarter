@@ -12,4 +12,13 @@
 }
 .add-btn {
   border: none;
+background-color: #154a99;
+font-size: 16px;
+text-transform: capitalize;
+padding: 10px 20px;
+color: #fff;
+border-radius: 3px;
+}
+.add-btn:hover {
+  background-color: #0d2954;
 }
