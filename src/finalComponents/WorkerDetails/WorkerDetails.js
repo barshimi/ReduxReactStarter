@@ -18,19 +18,23 @@ export default class WorkerDetails extends React.Component {
   }
 
   TITLES = [
-      {'layer_id': 1, 'layer_display_name': 'Full Stack Developer'},
-      {'layer_id': 2, 'layer_display_name': 'DBA'},
-      {'layer_id': 3, 'layer_display_name': 'Front End Developer'}
-    ]
+   'Full Stack Developer',
+   'DBA',
+   'Front End Developer'
+  ]
 
   POSITIONS = [
-    {'layer_id': 1, 'layer_display_name': 'Team Leader'},
-    {'layer_id': 2, 'layer_display_name': 'Junior Developer'},
-    {'layer_id': 3, 'layer_display_name': 'Feature Master'}
+    'Team Leader',
+    'Junior Developer',
+    'Feature Master'
   ]
 
   nameChange (event) {
     this.setState({ name : event.target.value})
+  }
+
+  extractDisplayName () {
+
   }
 
   titleChange (index) {
@@ -41,25 +45,29 @@ export default class WorkerDetails extends React.Component {
     this.setState({ position : this.POSITIONS[index]})
   }
 
+  handleAddClick = () => {
+    this.state;
+  }
+
   render () {
     return (
       <div className={css['worker-details-container']}>
         <div className={css['sub-input']}>
           <span className={css['titles']}> Name: </span>
           <span>
-            <input id='workerName' onChange={this.nameChange}></input>
+            <input id='workerName' onChange={this.nameChange.bind(this)}></input>
           </span>
         </div>
         <div className={css['sub-input']}>
           <span className={css['titles']}> Title: </span>
           <span>
-            <DropDown  style={css} items={this.TITLES} returnValue={this.titleChange} />
+            <DropDown  style={css} items={this.TITLES} returnValue={this.titleChange.bind(this)} />
           </span>
         </div>
         <div className={css['sub-input']}>
           <span className={css['titles']}> Position: </span>
           <span>
-            <DropDown style={css} items={this.POSITIONS} returnValue={this.positionChange} />
+            <DropDown style={css} items={this.POSITIONS} returnValue={this.positionChange.bind(this)} />
           </span>
         </div>
         <div>

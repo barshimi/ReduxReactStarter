@@ -45,7 +45,7 @@ export default class DropDown extends React.Component {
     return (
       <div className={css['dropdown-container']}>
         <div className={`${css['clearfix']} ${css['dropdown-selection']}`} onClick={this.toggleDropDown}>
-          <span className={css['dropdown-selection-txt']}>{selected !== null && items.length ? items[selected]['layer_display_name'] : placeHolder}</span>
+          <span className={css['dropdown-selection-txt']}>{selected !== null && items.length ? items[selected]: placeHolder}</span>
           <span className={css['dropdown-arrow']}>
             {listStatus
               ? <ArrowUpSvgIcon width={10} />
