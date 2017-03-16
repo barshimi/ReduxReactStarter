@@ -6,6 +6,7 @@ import actionCreator from '../../actions'
 import {WorkerDetails} from '../WorkerDetails'
 import {WorkersList} from '../WorkersList'
 import css from './app.scss'
+
 export class App extends Component {
   static propTypes = {
     workersList: PropTypes.array.isRequired,
