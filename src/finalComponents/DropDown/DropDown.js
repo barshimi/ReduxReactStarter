@@ -8,7 +8,6 @@ export default class DropDown extends React.Component {
     super(props)
     this.state = {
       css: Object.assign({}, cssDef, props.style),
-      selected: props.selected > -1 ? props.selected : null,
       listStatus: false,
       items: props.items
     }
@@ -24,15 +23,6 @@ export default class DropDown extends React.Component {
     // window.removeEventListener('keydown', this.manualSelection)
   }
 
-  componentWillReceiveProps (nextProps) {
-    console.log(nextProps)
-    // if (nextProps.selected === -1) {
-    //   this.setState({
-    //     selected: null
-    //   })
-    // }
-  }
-
   closeDropDown = (event) => {
     if (typeof event.target.className === 'string' && event.target.className.indexOf('dropdown') === -1 && this.state.listStatus) this.setState({listStatus: false})
   }
@@ -43,18 +33,18 @@ export default class DropDown extends React.Component {
 
   selectNewFromClick = (index) => {
     this.setState({
-      selected: index,
       listStatus: false
     })
     this.props.returnValue(index)
   }
+
   render () {
-    const {placeHolder, customGenerator, items} = this.props
-    const {css, selected, listStatus} = this.state
+    const {placeHolder, customGenerator, items, selected} = this.props
+    const {css, listStatus} = this.state
     return (
       <div className={css['dropdown-container']}>
         <div className={`${css['clearfix']} ${css['dropdown-selection']}`} onClick={this.toggleDropDown}>
-          <span className={css['dropdown-selection-txt']}>{selected !== null && items.length ? items[selected]: placeHolder}</span>
+          <span className={css['dropdown-selection-txt']}>{selected !== -1 && items.length ? items[selected]: placeHolder}</span>
           <span className={css['dropdown-arrow']}>
             {listStatus
               ? <ArrowUpSvgIcon width={10} />
@@ -82,6 +72,5 @@ DropDown.propTypes = {
 
 DropDown.defaultProps = {
   style: {},
-  selected: null,
   placeHolder: 'Choose'
 }

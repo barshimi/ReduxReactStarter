@@ -1,15 +1,21 @@
 .worker-item {
-  display: block;
+  width: 70%;
+  margin: 15px auto;
+  font-size: 14px;
+  font-weight: 600;
 }
 .worker-name {
-  display: block;
-}
-.worker-status {
-  display: block;
+  float: left;
+  text-transform: capitalize;
+  width: 200px;
+  text-align: left;
 }
 .worker-title {
-  display: block;
+  float: left;
+  margin-right: 30px;
 }
 .worker-position {
-  display: block;
+  float: left;
+  text-align: right;
+  width: 170px;
 }

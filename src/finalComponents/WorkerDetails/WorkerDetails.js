@@ -2,6 +2,7 @@ import React,{PropTypes} from 'react'
 import Actions from '../../actions'
 import css from './style.scss'
 import { DropDown } from '../DropDown'
+import {RemoveSvgIcon} from '../svgIcons'
 import { dispatch } from 'react-redux'
 
 const TITLES = [
@@ -19,19 +20,16 @@ const POSITIONS = [
 
 export default class WorkerDetails extends React.Component {
   static propTypes = {
-    actions: PropTypes.object
-  }
-
-  worker = {
-    name: '',
-    title: '',
-    position: ''
+    changeFormState: PropTypes.func,
+    addWorker: PropTypes.func
   }
 
   constructor (props) {
     super(props)
     this.state = {
-      changed : false
+      name: '',
+      title: -1,
+      position: -1
     }
   }
 
@@ -40,41 +38,50 @@ export default class WorkerDetails extends React.Component {
     this.setState({ name : event.target.value})
   }
 
-  titleChange = (index) => {
-    this.worker.title = TITLES[index]
-    // this.setState({ title : TITLES[index]})
-  }
-
-  positionChange = (index) => {
-    this.worker.position = POSITIONS[index]
-    // this.setState({ position : POSITIONS[index]})
+  dropDownChange = (type, index) => {
+    this.setState({[type]: index})
   }
 
   handleAddClick = () => {
-    this.props.addWorker(this.state)
-    this.setState({changed : !this.state.changed})
+    const {title, position, name} = this.state
+    if (title === -1 || position === -1 || !name.length) return false
+    this.props.addWorker({
+      name: name,
+      position: POSITIONS[position],
+      title: TITLES[title]
+    })
+    this.setState({
+      name: '',
+      title: -1,
+      position: -1
+    })
+  }
+
+  closeWorkerDetails = () => {
+    this.props.changeFormState()
   }
 
   render () {
-
+    const {title, position, name} = this.state
     return (
       <div className={css['worker-details-container']}>
+        <div className={css['close-icon']} onClick={this.closeWorkerDetails}><RemoveSvgIcon color={'#888'} width={15} /></div>
         <div className={css['sub-input']}>
           <span className={css['titles']}> Name: </span>
           <span>
-            <input id='workerName' onChange={this.nameChange}></input>
+            <input type='text' id='workerName' onChange={this.nameChange} value={name}></input>
           </span>
         </div>
         <div className={css['sub-input']}>
           <span className={css['titles']}> Title: </span>
           <span>
-            <DropDown style={css} items={TITLES} returnValue={this.titleChange} selected={-1} />
+            <DropDown style={css} items={TITLES} returnValue={this.dropDownChange.bind(null, 'title')} selected={title} />
           </span>
         </div>
         <div className={css['sub-input']}>
           <span className={css['titles']}> Position: </span>
           <span>
-            <DropDown style={css} items={POSITIONS} returnValue={this.positionChange} selected={-1}/>
+            <DropDown style={css} items={POSITIONS} returnValue={this.dropDownChange.bind(null, 'position')} selected={position}/>
           </span>
         </div>
         <div>

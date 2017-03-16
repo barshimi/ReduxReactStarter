@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import css from './workers_list.scss'
+import css from './worker_item.scss'
 
 export default class WorkerItem extends Component {
   static propTypes = {
@@ -9,7 +9,7 @@ export default class WorkerItem extends Component {
   render () {
     const {workDetails} = this.props
     return (
-      <div className={css['worker-item']}>
+      <div className={`clearfix ${css['worker-item']  }`}>
         <span className={css['worker-name']}>{workDetails.name}</span>
         <span className={css['worker-title']}>{workDetails.title}</span>
         <span className={css['worker-position']}>{workDetails.position}</span>

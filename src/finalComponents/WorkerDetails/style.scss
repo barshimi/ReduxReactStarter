@@ -1,7 +1,11 @@
 .worker-details-container {
+  position: relative;
   display: inline-block;
   width: 30%;
   margin: 20px;
+}
+.sub-input:nth-child(1) {
+  margin-top: 20px;
 }
 .sub-input {
   margin-bottom: 10px;
@@ -17,4 +21,10 @@
   padding: 10px 20px;
   color: #fff;
   border-radius: 3px;
+}
+.close-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
 }

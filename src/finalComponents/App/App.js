@@ -15,13 +15,12 @@ export class App extends Component {
   }
   render () {
     const {workersList, actions, formState} = this.props
-    console.log(this.props)
     return (
       <div>
         <div className={`clearfix ${css['main-container']}`}>
           <div className={css['taboola-logo']}><TaboolaLogoSvg width={250} /></div>
             <WorkersList list={workersList} formState={formState} actions={actions} />
-            {formState ? <WorkerDetails addWorker={actions.addWorker} /> : null}
+            {formState ? <WorkerDetails addWorker={actions.addWorker} changeFormState={actions.changeFormState} /> : null}
         </div>
       </div>
     )
