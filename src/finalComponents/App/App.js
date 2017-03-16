@@ -18,7 +18,7 @@ export class App extends Component {
         <div className={`clearfix ${css['main-container']}`}>
           <div className={css['taboola-logo']}><TaboolaLogoSvg width={250} /></div>
             <WorkersList list={workersList} actions={actions} />
-            <WorkerDetails />
+            <WorkerDetails actions={actions}/>
         </div>
       </div>
     )

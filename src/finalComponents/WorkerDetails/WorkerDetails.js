@@ -1,9 +1,13 @@
-import React from 'react'
+import React,{PropTypes} from 'react'
 import Actions from '../../actions'
 import css from './style.scss'
 import {DropDown} from '../DropDown'
 
 export default class WorkerDetails extends React.Component {
+  static propTypes = {
+    actions: PropTypes.object
+  }
+
   constructor (props) {
     super(props)
     this.state = {
@@ -14,7 +18,7 @@ export default class WorkerDetails extends React.Component {
   }
 
   TITLES = [
-      {'layer_id': 1, 'layer_display_name': 'Full Stack Developet'},
+      {'layer_id': 1, 'layer_display_name': 'Full Stack Developer'},
       {'layer_id': 2, 'layer_display_name': 'DBA'},
       {'layer_id': 3, 'layer_display_name': 'Front End Developer'}
     ]
@@ -57,6 +61,9 @@ export default class WorkerDetails extends React.Component {
           <span>
             <DropDown style={css} items={this.POSITIONS} returnValue={this.positionChange} />
           </span>
+        </div>
+        <div>
+          <button className={css['add-btn']} onClick={this.handleAddClick}>add </button>
         </div>
       </div>
     )
