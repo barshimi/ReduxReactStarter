@@ -1,7 +1,8 @@
 import React,{PropTypes} from 'react'
 import Actions from '../../actions'
 import css from './style.scss'
-import {DropDown} from '../DropDown'
+import { DropDown } from '../DropDown'
+import { dispatch } from 'react-redux'
 
 export default class WorkerDetails extends React.Component {
   static propTypes = {
@@ -33,10 +34,6 @@ export default class WorkerDetails extends React.Component {
     this.setState({ name : event.target.value})
   }
 
-  extractDisplayName () {
-
-  }
-
   titleChange (index) {
     this.setState({ title : this.TITLES[index]})
   }
@@ -46,7 +43,7 @@ export default class WorkerDetails extends React.Component {
   }
 
   handleAddClick = () => {
-    this.state;
+    dispatch(Actions.addWorker(this.state))
   }
 
   render () {
@@ -71,7 +68,7 @@ export default class WorkerDetails extends React.Component {
           </span>
         </div>
         <div>
-          <button className={css['add-btn']} onClick={this.handleAddClick}>add </button>
+          <button className={css['add-btn']} onClick={this.handleAddClick.bind(this)}>add </button>
         </div>
       </div>
     )
