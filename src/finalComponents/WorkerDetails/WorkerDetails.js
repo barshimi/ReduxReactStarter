@@ -38,7 +38,7 @@ export default class WorkerDetails extends React.Component {
             <input id='workerName' onChange={this.nameChange}></input>
           </span>
         </div>
-        <div>
+        <div >
           <span> Title: </span>
           <span>
             <DropDown items={this.TITLES} selected={0} returnValue={this.titleChange} />
