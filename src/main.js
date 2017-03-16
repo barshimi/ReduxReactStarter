@@ -7,14 +7,14 @@ import { createStore, applyMiddleware, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
 import createLogger from 'redux-logger'
 import Root from './routes'
-import reducers from './reducers'
+import rootReducer from './reducers'
 require('./style/_globals.scss')
-
+console.log(rootReducer)
 const history = createBrowserHistory()
 const logger = createLogger()
 const store = createStore(
   combineReducers({
-    ...reducers,
+    ...rootReducer,
     router: routerReducer
   }),
   applyMiddleware(thunk, routerMiddleware(history), logger)

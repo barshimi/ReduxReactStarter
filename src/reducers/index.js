@@ -6,8 +6,11 @@ import {
   FORM_STATE
 } from '../constants'
 
-const createReducer = () => {
-
+const createReducer = (initialState, reducerMap) => {
+  return (state = initialState, action) => {
+    const reducer = reducerMap[action.type]
+    return reducer ? reducer(state, action.payload) : state
+  }
 }
 
 const InitialState = {
@@ -21,10 +24,12 @@ const rootReducer = {
       workersList: state.workersList.concat(payload)
     }),
     [DISABLE_WORKER]: (state, payload) => Object.assign({}, state, {
-      workersList: state.workersList.concat(payload)
+      workersList: state.workersList.map(worker => {
+        if (worker.name === payload.name && worker.position === payload.position) worker = Object.assign({}, worker, {status: false})
+      })
     }),
     [REMOVE_WORKER]: (state, payload) => Object.assign({}, state, {
-      workersList: state.workersList.concat(payload)
+      workersList: state.workersList.filter(worker => (worker.name !== payload.name && worker.position !== payload.position))
     })
   }),
   formState: createReducer(InitialState.formState, {
