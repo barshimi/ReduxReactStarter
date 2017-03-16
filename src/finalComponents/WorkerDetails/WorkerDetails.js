@@ -4,6 +4,19 @@ import css from './style.scss'
 import { DropDown } from '../DropDown'
 import { dispatch } from 'react-redux'
 
+const TITLES = [
+ 'Full Stack Developer',
+ 'DBA',
+ 'Front End Developer'
+]
+
+const POSITIONS = [
+  'Team Leader',
+  'Junior Developer',
+  'Feature Master'
+]
+
+
 export default class WorkerDetails extends React.Component {
   static propTypes = {
     actions: PropTypes.object
@@ -14,61 +27,57 @@ export default class WorkerDetails extends React.Component {
     this.state = {
       name: '',
       title: '',
-      position: ''
+      position: '',
+      status: null
     }
   }
 
-  TITLES = [
-   'Full Stack Developer',
-   'DBA',
-   'Front End Developer'
-  ]
 
-  POSITIONS = [
-    'Team Leader',
-    'Junior Developer',
-    'Feature Master'
-  ]
-
-  nameChange (event) {
+  nameChange = (event) => {
     this.setState({ name : event.target.value})
   }
 
-  titleChange (index) {
-    this.setState({ title : this.TITLES[index]})
+  titleChange = (index) => {
+    this.setState({ title : TITLES[index]})
   }
 
-  positionChange (index) {
-    this.setState({ position : this.POSITIONS[index]})
+  positionChange = (index) => {
+    this.setState({ position : POSITIONS[index]})
   }
 
   handleAddClick = () => {
-    dispatch(Actions.addWorker(this.state))
+    this.props.addWorker(this.state)
+    this.setState({
+      name: '',
+      title: '',
+      position: ''
+    })
   }
 
   render () {
+
     return (
       <div className={css['worker-details-container']}>
         <div className={css['sub-input']}>
           <span className={css['titles']}> Name: </span>
           <span>
-            <input id='workerName' onChange={this.nameChange.bind(this)}></input>
+            <input id='workerName' onChange={this.nameChange}></input>
           </span>
         </div>
         <div className={css['sub-input']}>
           <span className={css['titles']}> Title: </span>
           <span>
-            <DropDown  style={css} items={this.TITLES} returnValue={this.titleChange.bind(this)} />
+            <DropDown style={css} items={TITLES} returnValue={this.titleChange} selected={this.state.status} />
           </span>
         </div>
         <div className={css['sub-input']}>
           <span className={css['titles']}> Position: </span>
           <span>
-            <DropDown style={css} items={this.POSITIONS} returnValue={this.positionChange.bind(this)} />
+            <DropDown style={css} items={POSITIONS} returnValue={this.positionChange} />
           </span>
         </div>
         <div>
-          <button className={css['add-btn']} onClick={this.handleAddClick.bind(this)}>add </button>
+          <button className={css['add-btn']} onClick={this.handleAddClick}>add </button>
         </div>
       </div>
     )

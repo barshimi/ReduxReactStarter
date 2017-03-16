@@ -10,16 +10,18 @@ import css from './app.scss'
 export class App extends Component {
   static propTypes = {
     workersList: PropTypes.array.isRequired,
+    formState: PropTypes.bool,
     actions: PropTypes.object
   }
   render () {
-    const {workersList, actions} = this.props
+    const {workersList, actions, formState} = this.props
+    console.log(this.props)
     return (
       <div>
         <div className={`clearfix ${css['main-container']}`}>
           <div className={css['taboola-logo']}><TaboolaLogoSvg width={250} /></div>
-            <WorkersList list={workersList} actions={actions} />
-            <WorkerDetails actions={actions} dispatch={dispatch}/>
+            <WorkersList list={workersList} formState={formState} actions={actions} />
+            {formState ? <WorkerDetails addWorker={actions.addWorker} /> : null}
         </div>
       </div>
     )
@@ -28,7 +30,8 @@ export class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    workersList: state.workersList
+    workersList: state.workersList,
+    formState: state.formState
   }
 }
 

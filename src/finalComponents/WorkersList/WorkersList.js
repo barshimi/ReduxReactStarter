@@ -1,16 +1,18 @@
 import React, { Component, PropTypes } from 'react'
+import WorkerItem from './WorkerItem'
 import css from './workers_list.scss'
 
 export default class WorkersList extends Component {
   static propTypes = {
     list: PropTypes.array.isRequired,
+    formState: PropTypes.bool,
     actions: PropTypes.object
   }
 
   renderWorkersList = () => {
-    this.props.list.map(worker => {
+    return this.props.list.map((worker, index) => {
       return (
-        <WorkerItem workDetails={worker} />
+        <WorkerItem workDetails={worker} key={index} />
       )
     })
   }
@@ -18,7 +20,8 @@ export default class WorkersList extends Component {
   renderEmptyTitle = () => (<h2 className={css['workers-empty-title']}>taboola workers list is empty</h2>)
 
   handleAddClick = () => {
-    console.log(this.props)
+    const {formState, actions} = this.props
+    if (!formState) actions.changeFormState()
   }
 
   render () {

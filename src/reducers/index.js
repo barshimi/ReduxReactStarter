@@ -20,22 +20,14 @@ const InitialState = {
 
 const rootReducer = {
   workersList: createReducer(InitialState.workersList, {
-    [ADD_WORKER]: (state, payload) => Object.assign({}, state, {
-      workersList: state.workersList.concat(payload)
+    [ADD_WORKER]: (state, payload) => state.concat(payload),
+    [DISABLE_WORKER]: (state, payload) => state.map(worker => {
+      if (worker.name === payload.name && worker.position === payload.position) worker = Object.assign({}, worker, {status: false})
     }),
-    [DISABLE_WORKER]: (state, payload) => Object.assign({}, state, {
-      workersList: state.workersList.map(worker => {
-        if (worker.name === payload.name && worker.position === payload.position) worker = Object.assign({}, worker, {status: false})
-      })
-    }),
-    [REMOVE_WORKER]: (state, payload) => Object.assign({}, state, {
-      workersList: state.workersList.filter(worker => (worker.name !== payload.name && worker.position !== payload.position))
-    })
+    [REMOVE_WORKER]: (state, payload) => state.workersList.filter(worker => (worker.name !== payload.name && worker.position !== payload.position))
   }),
   formState: createReducer(InitialState.formState, {
-    [FORM_STATE]: (state) => Object.assign({}, state, {
-      formState: !state.formState
-    })
+    [FORM_STATE]: (state) => !state
   })
 }
 

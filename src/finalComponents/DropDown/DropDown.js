@@ -24,6 +24,15 @@ export default class DropDown extends React.Component {
     // window.removeEventListener('keydown', this.manualSelection)
   }
 
+  componentWillReceiveProps (nextProps) {
+    console.log(nextProps)
+    // if (nextProps.selected === -1) {
+    //   this.setState({
+    //     selected: null
+    //   })
+    // }
+  }
+
   closeDropDown = (event) => {
     if (typeof event.target.className === 'string' && event.target.className.indexOf('dropdown') === -1 && this.state.listStatus) this.setState({listStatus: false})
   }

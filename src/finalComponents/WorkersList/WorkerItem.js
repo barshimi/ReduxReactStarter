@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import css from './workers_list.scss'
 
-export default class App extends Component {
+export default class WorkerItem extends Component {
   static propTypes = {
     workDetails: PropTypes.object.isRequired
   }
@@ -11,7 +11,6 @@ export default class App extends Component {
     return (
       <div className={css['worker-item']}>
         <span className={css['worker-name']}>{workDetails.name}</span>
-        <span className={css['worker-status']}>{workDetails.status ? 'active' : 'inactive'}</span>
         <span className={css['worker-title']}>{workDetails.title}</span>
         <span className={css['worker-position']}>{workDetails.position}</span>
       </div>
