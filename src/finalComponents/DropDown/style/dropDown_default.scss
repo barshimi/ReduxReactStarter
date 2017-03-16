@@ -1,0 +1,63 @@
+.clearfix:after {
+  content: ".";
+  visibility: hidden;
+  display: block;
+}
+.dropdown-container {
+  position: relative;
+  font-size: 10px;
+}
+.dropdown-selection {
+  border-bottom: 1px solid #d1d1d1;
+  padding-bottom: 1.7em;
+  cursor: pointer;
+}
+.dropdown-selection-txt {
+  display: block;
+  width: auto;
+  font-size: 2.2em;
+  font-weight: 600;
+  float: left;
+}
+.dropdown-arrow {
+  display: block;
+  float: right;
+  margin-right: 0.7rem;
+  margin-top: 0.8em;
+  cursor: pointer;
+}
+.dropdown-list {
+  position: absolute;
+  opacity: 1;
+  top: 27px;
+  background-color: #ffffff;
+  box-shadow: 0 0.5px 5px 0 rgba(0, 0, 0, 0.15);
+  border: solid 0.5px #d1d1d1;
+  width: 100%;
+  -webkit-transition: all 0.4s ease-in;
+  -moz-transition: all 0.4s ease-in;
+  -ms-transition: all 0.4s ease-in;
+  -o-transition: all 0.4s ease-in;
+  transition: all 0.4s ease-in;
+}
+.dropdown-hidden {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all 0.4s ease-out;
+  -moz-transition: all 0.4s ease-out;
+  -ms-transition: all 0.4s ease-out;
+  -o-transition: all 0.4s ease-out;
+  transition: all 0.4s ease-out;
+}
+
+.dropdown-item {
+  display: block;
+  padding: 0.3em 0 0.3em 0.8em;
+  font-size: 1.2em;
+  font-weight: 200;
+  cursor: pointer;
+}
+.dropdown-selected, .dropdown-item:hover {
+  background-color: #144c92;
+  color: #ffffff;
+}
