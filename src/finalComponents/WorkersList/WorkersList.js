@@ -3,7 +3,8 @@ import css from './workers_list.scss'
 
 export default class WorkersList extends Component {
   static propTypes = {
-    list: PropTypes.array.isRequired
+    list: PropTypes.array.isRequired,
+    actions: PropTypes.object
   }
 
   renderWorkersList = () => {
@@ -16,8 +17,8 @@ export default class WorkersList extends Component {
 
   renderEmptyTitle = () => (<h2 className={css['workers-empty-title']}>taboola workers list is empty</h2>)
 
-  handleAddWorker = (worker) => {
-    console.log(worker)
+  handleAddClick = () => {
+    console.log(this.props)
   }
 
   render () {
@@ -25,7 +26,7 @@ export default class WorkersList extends Component {
     return (
       <div className={css['workers-container']}>
         {list.length ? this.renderWorkersList() : this.renderEmptyTitle()}
-        <AddWorkerBtn handleAddWorker={this.handleAddWorker} />
+        <button className={css['add-btn']} onClick={this.handleAddClick}>add new taboola worker</button>
       </div>
     )
   }
