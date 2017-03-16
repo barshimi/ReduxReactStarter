@@ -6,8 +6,10 @@ import React from 'react'
  * ]
  */
 export default function (items, selected, css, cssSelected, onclick, onKeyPress) {
-  if (!items.length) return null
-  return items.map((item, index) => (
-    <span key={index} className={`dropdownItem ${css} ${index === selected ? cssSelected : ''}`} onClick={onclick.bind(null, index)}>{item.layer_display_name}</span>
+  let newArr = []
+  items.forEach((item, index) => (
+    newArr.push(<span key={index} className={`dropdownItem ${css} ${index === selected ? cssSelected : ''}`} onClick={onclick.bind(null, index)}>{item}</span>)
   ))
+  if (!newArr.length) return null
+  return newArr
 }

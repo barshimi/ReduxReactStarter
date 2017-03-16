@@ -15,9 +15,10 @@
 .dropdown-selection-txt {
   display: block;
   width: auto;
-  font-size: 2.2em;
+  font-size: 10px;
   font-weight: 600;
   float: left;
+  margin-top: 8px;
 }
 .dropdown-arrow {
   display: block;
@@ -30,6 +31,7 @@
   position: absolute;
   opacity: 1;
   top: 27px;
+    z-index: 9999999;
   background-color: #ffffff;
   box-shadow: 0 0.5px 5px 0 rgba(0, 0, 0, 0.15);
   border: solid 0.5px #d1d1d1;

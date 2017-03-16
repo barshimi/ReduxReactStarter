@@ -1,9 +1,14 @@
-import React from 'react'
+import React,{PropTypes} from 'react'
 import Actions from '../../actions'
 import css from './style.scss'
-import {DropDown} from '../DropDown'
+import { DropDown } from '../DropDown'
+import { dispatch } from 'react-redux'
 
 export default class WorkerDetails extends React.Component {
+  static propTypes = {
+    actions: PropTypes.object
+  }
+
   constructor (props) {
     super(props)
     this.state = {
@@ -13,9 +18,17 @@ export default class WorkerDetails extends React.Component {
     }
   }
 
-  TITLES = ['Full Stack Developet', 'DBA', 'Front End Developer']
+  TITLES = [
+   'Full Stack Developer',
+   'DBA',
+   'Front End Developer'
+  ]
 
-  POSITIONS = ['Team Leader', 'Junior Developer', 'Feature Master']
+  POSITIONS = [
+    'Team Leader',
+    'Junior Developer',
+    'Feature Master'
+  ]
 
   nameChange (event) {
     this.setState({ name : event.target.value})
@@ -29,26 +42,33 @@ export default class WorkerDetails extends React.Component {
     this.setState({ position : this.POSITIONS[index]})
   }
 
+  handleAddClick = () => {
+    dispatch(Actions.addWorker(this.state))
+  }
+
   render () {
     return (
       <div className={css['worker-details-container']}>
-        <div>
-          <span> Name: </span>
+        <div className={css['sub-input']}>
+          <span className={css['titles']}> Name: </span>
           <span>
-            <input id='workerName' onChange={this.nameChange}></input>
+            <input id='workerName' onChange={this.nameChange.bind(this)}></input>
           </span>
         </div>
-        <div >
-          <span> Title: </span>
+        <div className={css['sub-input']}>
+          <span className={css['titles']}> Title: </span>
           <span>
-            <DropDown items={this.TITLES} selected={0} returnValue={this.titleChange} />
+            <DropDown  style={css} items={this.TITLES} returnValue={this.titleChange.bind(this)} />
+          </span>
+        </div>
+        <div className={css['sub-input']}>
+          <span className={css['titles']}> Position: </span>
+          <span>
+            <DropDown style={css} items={this.POSITIONS} returnValue={this.positionChange.bind(this)} />
           </span>
         </div>
         <div>
-          <span> Position: </span>
-          <span>
-            <DropDown items={this.POSITIONS} selected={0} returnValue={this.positionChange} />
-          </span>
+          <button className={css['add-btn']} onClick={this.handleAddClick.bind(this)}>add </button>
         </div>
       </div>
     )
