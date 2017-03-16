@@ -22,13 +22,16 @@ export default class WorkerDetails extends React.Component {
     actions: PropTypes.object
   }
 
+  worker = {
+    name: '',
+    title: '',
+    position: ''
+  }
+
   constructor (props) {
     super(props)
     this.state = {
-      name: '',
-      title: '',
-      position: '',
-      status: null
+      changed : false
     }
   }
 
@@ -38,20 +41,18 @@ export default class WorkerDetails extends React.Component {
   }
 
   titleChange = (index) => {
-    this.setState({ title : TITLES[index]})
+    this.worker.title = TITLES[index]
+    // this.setState({ title : TITLES[index]})
   }
 
   positionChange = (index) => {
-    this.setState({ position : POSITIONS[index]})
+    this.worker.position = POSITIONS[index]
+    // this.setState({ position : POSITIONS[index]})
   }
 
   handleAddClick = () => {
     this.props.addWorker(this.state)
-    this.setState({
-      name: '',
-      title: '',
-      position: ''
-    })
+    this.setState({changed : !this.state.changed})
   }
 
   render () {
@@ -67,13 +68,13 @@ export default class WorkerDetails extends React.Component {
         <div className={css['sub-input']}>
           <span className={css['titles']}> Title: </span>
           <span>
-            <DropDown style={css} items={TITLES} returnValue={this.titleChange} selected={this.state.status} />
+            <DropDown style={css} items={TITLES} returnValue={this.titleChange} selected={-1} />
           </span>
         </div>
         <div className={css['sub-input']}>
           <span className={css['titles']}> Position: </span>
           <span>
-            <DropDown style={css} items={POSITIONS} returnValue={this.positionChange} />
+            <DropDown style={css} items={POSITIONS} returnValue={this.positionChange} selected={-1}/>
           </span>
         </div>
         <div>
