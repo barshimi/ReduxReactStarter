@@ -33,7 +33,6 @@ export default class WorkerDetails extends React.Component {
     }
   }
 
-
   nameChange = (event) => {
     this.setState({ name : event.target.value})
   }

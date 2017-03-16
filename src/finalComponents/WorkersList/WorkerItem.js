@@ -9,7 +9,7 @@ export default class WorkerItem extends Component {
   render () {
     const {workDetails} = this.props
     return (
-      <div className={`clearfix ${css['worker-item']  }`}>
+      <div className={`clearfix ${css['worker-item']}`}>
         <span className={css['worker-name']}>{workDetails.name}</span>
         <span className={css['worker-title']}>{workDetails.title}</span>
         <span className={css['worker-position']}>{workDetails.position}</span>
