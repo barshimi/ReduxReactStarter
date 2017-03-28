@@ -12,10 +12,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['react', 'es2015', 'react-hmre', 'stage-1']
-        }
+        loader: 'babel-loader'
       },
       {
         test: /\.scss$/,
@@ -27,7 +24,10 @@ module.exports = {
     extensions: ['.js', '.jsx']
   },
   devServer: {
+    hot: true,
+    inline: true,
     historyApiFallback: true,
-    contentBase: './'
+    contentBase: './',
+    publicPath: '/'
   }
 }
